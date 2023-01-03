@@ -7,9 +7,10 @@ import androidx.room.RoomDatabase
 import com.swancompany.journal.data.daos.NoteDao
 import com.swancompany.journal.data.models.NoteModel
 
+
 @Database(entities = [NoteModel::class], version = 1)
 abstract class NoteDatabase :RoomDatabase(){
-abstract fun noteDao() : NoteDao
+    abstract fun noteDao() : NoteDao
 
     companion object {
         private var INSTANCE: NoteDatabase? = null

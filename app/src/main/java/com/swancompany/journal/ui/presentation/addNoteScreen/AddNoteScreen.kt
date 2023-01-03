@@ -37,7 +37,7 @@ fun AddNoteScreen() {
                 disabledIndicatorColor = Color.Transparent
             )
 
-            )
+        )
         TextField(
             value = notes,
             onValueChange = {notes = it},

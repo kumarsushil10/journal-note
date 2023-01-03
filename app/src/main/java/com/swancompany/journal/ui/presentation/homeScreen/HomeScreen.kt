@@ -73,7 +73,7 @@ fun NotesCard(
                     text = noteModel.title,
                     fontSize = 24.sp
                 )
-               Text(
+                Text(
                     text = noteModel.notes,
                     fontSize = 12.sp,
                     textDecoration = TextDecoration.Underline
@@ -89,4 +89,3 @@ fun NotesCard(
         }
     }
 }
-

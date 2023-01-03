@@ -1,3 +1,4 @@
+
 package com.swancompany.journal.data.daos
 
 import androidx.room.*
