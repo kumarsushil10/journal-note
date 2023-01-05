@@ -22,11 +22,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-    fun updateNote(noteModel: NoteModel){
-        viewModelScope.launch {
-            noteRepo.updateNoteInRoom(noteModel)
-        }
-    }
+
     fun deleteNote(noteModel: NoteModel){
         viewModelScope.launch {
             noteRepo.deleteNoteFromRoom(noteModel)

@@ -1,6 +1,7 @@
 package com.swancompany.journal.ui.presentation.homeScreen
 
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.swancompany.journal.data.models.NoteModel
 
@@ -27,6 +27,7 @@ import com.swancompany.journal.data.models.NoteModel
 @Composable
 fun HomeScreen(
     onFabClicked: () -> Unit,
+    navigateToUpdateNoteScreen: (noteId: Int) -> Unit
 ) {
     val viewModel:HomeViewModel = viewModel()
     val notesModel = viewModel.notesModel
@@ -45,7 +46,7 @@ fun HomeScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             items(notesModel) { noteModel ->
-                NotesCard(noteModel, viewModel)
+                NotesCard(noteModel, viewModel,navigateToUpdateNoteScreen)
             }
         }
     }
@@ -55,12 +56,18 @@ fun HomeScreen(
 fun NotesCard(
     noteModel: NoteModel,
     viewModel: HomeViewModel,
+    navigateToUpdateNoteScreen: (noteId: Int) -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp, 5.dp),
-        elevation = 4.dp
+            .padding(8.dp, 5.dp)
+            .clickable {
+                navigateToUpdateNoteScreen(noteModel.id)
+                Log.i("HomeScreen","onCardClicked")
+                       },
+        elevation = 4.dp,
+
     ) {
         Row(
             modifier = Modifier
