@@ -7,13 +7,12 @@ import com.swancompany.journal.data.models.NoteModel
 import com.swancompany.journal.domain.NoteRepository
 import kotlinx.coroutines.launch
 
-class AddNoteViewModel(application: Application):AndroidViewModel(application) {
+class AddNoteViewModel(application: Application) : AndroidViewModel(application) {
     private val noteRepo = NoteRepository(application)
 
-    fun insertNote(noteModel: NoteModel){
+    fun insertNote(noteModel: NoteModel) {
         viewModelScope.launch {
             noteRepo.insertNoteToRoom(noteModel)
         }
     }
-
 }

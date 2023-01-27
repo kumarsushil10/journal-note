@@ -11,7 +11,6 @@ import com.swancompany.journal.domain.NoteRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-
     private val noteRepo = NoteRepository(application)
     var notesModel by mutableStateOf(emptyList<NoteModel>())
 
@@ -23,10 +22,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun deleteNote(noteModel: NoteModel){
+    fun deleteNote(noteModel: NoteModel) {
         viewModelScope.launch {
             noteRepo.deleteNoteFromRoom(noteModel)
         }
     }
-
 }

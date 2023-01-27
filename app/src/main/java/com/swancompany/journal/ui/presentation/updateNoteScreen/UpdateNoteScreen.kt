@@ -1,17 +1,15 @@
 package com.swancompany.journal.ui.presentation.updateNoteScreen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.swancompany.journal.data.models.NoteModel
+import com.swancompany.journal.ui.presentation.addNoteScreen.AddNoteTopBar
 
 @Composable
 fun UpdateNoteScreen(
@@ -24,39 +22,39 @@ fun UpdateNoteScreen(
     }
     val title = viewModel.noteModel.title
     val note = viewModel.noteModel.notes
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+    Scaffold(
+        topBar = { UpdateNoteTopBar(viewModel,noteId,navigateBack,title,note) },
     ) {
-        TextField(
-            value = title,
-            onValueChange = { title -> viewModel.updateTitle(title) },
-            placeholder = {
-                Text(
-                    text = "Title"
-                )
-            }
-        )
-
-        TextField(
-            value = note,
-            onValueChange = { note -> viewModel.updateNote(note) },
-            placeholder = {
-                Text(
-                    text = "note"
-                )
-            }
-        )
-        Button(
-            onClick = {
-                val updateNote = NoteModel(noteId, title, note)
-                viewModel.updateNotes(updateNote)
-                navigateBack()
-            }
+        Column(
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Text(
-                text = "Update"
+            TextField(
+                value = title,
+                onValueChange = { title -> viewModel.updateTitle(title) },
+                placeholder = { Text(text = "Title") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                )
+            )
+
+            TextField(
+                value = note,
+                onValueChange = { note -> viewModel.updateNote(note) },
+                placeholder = { Text(text = "Note") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.9f),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                )
             )
         }
     }
