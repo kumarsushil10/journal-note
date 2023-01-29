@@ -34,6 +34,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -152,30 +153,26 @@ fun NotesCard(
 ) {
     Card(
         modifier = Modifier
+            .heightIn(0.dp ,188.dp)
             .fillMaxWidth()
-            .padding(8.dp, 5.dp)
+            .padding(8.dp, 4.dp)
             .clickable {
                 navigateToUpdateNoteScreen(noteModel.id)
                 Log.i("HomeScreen", "onCardClicked")
             },
         elevation = 4.dp,
         ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(modifier = Modifier.fillMaxWidth(.9f)) {
+            Column(modifier = Modifier.fillMaxWidth()
+                .padding(12.dp,4.dp)) {
                 Text(
                     text = noteModel.title,
                     fontSize = 24.sp
                 )
                 Text(
                     text = noteModel.notes,
-                    fontSize = 12.sp,
+                    Modifier.alpha(.7f),
+                    lineHeight = 17.sp
                 )
             }
-        }
     }
 }

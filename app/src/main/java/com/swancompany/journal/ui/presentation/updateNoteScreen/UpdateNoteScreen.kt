@@ -1,12 +1,19 @@
 package com.swancompany.journal.ui.presentation.updateNoteScreen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.swancompany.journal.data.models.NoteModel
 import com.swancompany.journal.ui.presentation.addNoteScreen.AddNoteTopBar
@@ -17,11 +24,13 @@ fun UpdateNoteScreen(
     navigateBack: () -> Unit,
 ) {
     val viewModel: UpdateNoteViewModel = viewModel()
+    val title = viewModel.noteModel.title
+    val note = viewModel.noteModel.notes
+    val focusManager = LocalFocusManager.current
+
     LaunchedEffect(Unit) {
         viewModel.getNoteById(noteId)
     }
-    val title = viewModel.noteModel.title
-    val note = viewModel.noteModel.notes
     Scaffold(
         topBar = { UpdateNoteTopBar(viewModel,noteId,navigateBack,title,note) },
     ) {
@@ -36,10 +45,16 @@ fun UpdateNoteScreen(
                 singleLine = true,
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.LightGray,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
-                )
+                ),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    capitalization = KeyboardCapitalization.Sentences,
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
+                ),
+                keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Down) }),
             )
 
             TextField(
@@ -54,7 +69,11 @@ fun UpdateNoteScreen(
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
-                )
+                ),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    capitalization = KeyboardCapitalization.Sentences,
+                    keyboardType = KeyboardType.Text,
+                ),
             )
         }
     }
