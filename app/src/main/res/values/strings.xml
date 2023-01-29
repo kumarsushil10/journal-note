@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Journal</string>
-    <string name="note">Note</string>
+    <string name="note">Notes</string>
     <string name="about">About</string>
 </resources>

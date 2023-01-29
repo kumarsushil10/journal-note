@@ -36,6 +36,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import com.swancompany.journal.ui.theme.JournalTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -66,7 +69,7 @@ fun HomeScreen(
                 }
             } else {
                 item {
-                    ShowNoTasks()
+                    ShowNoNotes()
                 }
             }
         }
@@ -101,7 +104,6 @@ fun NoteSwappable(
             StartToEnd -> Alignment.CenterStart
             EndToStart -> return@SwipeToDismiss
         }
-        val icon = Icons.Default.Delete
         val scale by animateFloatAsState(
             if (dismissState.targetValue == Default) 0.75f else 1f
         )
@@ -113,7 +115,7 @@ fun NoteSwappable(
             contentAlignment = alignment
         ) {
             Icon(
-                icon,
+                Icons.Default.Delete,
                 contentDescription = "",
                 modifier = Modifier.scale(scale)
             )
@@ -127,13 +129,21 @@ fun NoteSwappable(
 
 
 @Composable
-fun ShowNoTasks() {
-    Image(
-        painterResource(R.drawable.background_light),
-        contentDescription = "empty"
-    )
+fun ShowNoNotes() {
+    Column(modifier = Modifier.fillMaxSize()
+        .padding(0.dp,120.dp,0.dp,0.dp)) {
+        Image(
+            painter = painterResource(id = R.drawable.img),
+            contentDescription = "empty",
+            modifier = Modifier.fillMaxWidth(),
+            alignment = Alignment.Center
+        )
+        Text(text = "Your notes will show here",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
+    }
 }
-
 
 @Composable
 fun NotesCard(

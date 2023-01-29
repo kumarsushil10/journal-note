@@ -1,6 +1,7 @@
 package com.swancompany.journal.ui.presentation.addNoteScreen
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.material3.*
 import com.swancompany.journal.R
 import androidx.compose.runtime.Composable
@@ -27,10 +28,13 @@ fun AddNoteTopBar(
         },
         actions = {
             IconButton(onClick = {
-                val noteModel = NoteModel(id = 0, title = title, notes = notes)
-                viewModel.insertNote(noteModel)
-                navigateBack()
-                Log.i("AddNoteScreen", "add Button clicked")
+                if (title.isNotEmpty() || notes.isNotEmpty()){
+                    val noteModel = NoteModel(id = 0, title = title, notes = notes)
+                    viewModel.insertNote(noteModel)
+                    navigateBack()
+                }else{
+                    navigateBack()
+                }
             }) {
                 Icon(painterResource(id = R.drawable.ic_baseline_check_24),
                     contentDescription = "Git")
