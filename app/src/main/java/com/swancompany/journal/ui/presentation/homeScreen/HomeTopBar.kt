@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -16,7 +18,9 @@ fun HomeTopBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(stringResource(R.string.app_name))
+            Text(stringResource(R.string.app_name),
+                fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
+            )
         },
         navigationIcon = {
             Image(

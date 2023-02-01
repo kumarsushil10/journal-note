@@ -6,6 +6,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.swancompany.journal.R
 import com.swancompany.journal.data.models.NoteModel
 
@@ -18,7 +20,11 @@ fun UpdateNoteTopBar(
     note: String,
 ) {
     CenterAlignedTopAppBar(
-        title = { Text(text = title) },
+        title = { Text(
+            text = title,
+            fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
+            )
+        },
         navigationIcon = {
             IconButton(onClick = { navigateBack() }) {
                 Icon(painterResource(R.drawable.ic_baseline_clear_24),

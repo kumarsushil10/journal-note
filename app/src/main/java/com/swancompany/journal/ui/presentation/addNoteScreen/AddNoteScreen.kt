@@ -17,11 +17,14 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.swancompany.journal.R
 
 @Composable
 fun AddNoteScreen(
@@ -45,7 +48,9 @@ fun AddNoteScreen(
                     value = title,
                     onValueChange = { title = it },
                     placeholder = { Text("Title", color = colorScheme.onSurface) },
-                    textStyle = TextStyle(color = colorScheme.onSurface),
+                    textStyle = TextStyle(color = colorScheme.onSurface,
+                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                    ),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     colors = TextFieldDefaults.textFieldColors(
@@ -67,7 +72,9 @@ fun AddNoteScreen(
                     value = notes,
                     onValueChange = { notes = it },
                     placeholder = { Text("Notes", color = colorScheme.onSurface) },
-                    textStyle = TextStyle(color = colorScheme.onSurface),
+                    textStyle = TextStyle(color = colorScheme.onSurface,
+                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(),

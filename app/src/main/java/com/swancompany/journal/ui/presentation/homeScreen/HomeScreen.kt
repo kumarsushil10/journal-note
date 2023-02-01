@@ -40,6 +40,8 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.swancompany.journal.ui.theme.JournalTheme
@@ -182,11 +184,14 @@ fun NotesCard(
                 Text(
                     text = noteModel.title,
                     color = colorScheme.onSecondaryContainer,
-                    fontSize = 24.sp
-                )
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
+
+                    )
                 Text(
                     text = noteModel.notes,
-                    Modifier.alpha(.7f),
+                    Modifier.alpha(0.9f),
+                    fontFamily = FontFamily(Font(R.font.assistant_regular)),
                     color = colorScheme.onSecondaryContainer,
                     lineHeight = 17.sp
                 )

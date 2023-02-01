@@ -5,6 +5,8 @@ import com.swancompany.journal.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import com.swancompany.journal.data.models.NoteModel
 
 @Composable
@@ -16,7 +18,10 @@ fun AddNoteTopBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(stringResource(R.string.note))
+            Text(
+                stringResource(R.string.note),
+                fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
+            )
         },
         navigationIcon = {
             IconButton(onClick = { navigateBack() }) {
