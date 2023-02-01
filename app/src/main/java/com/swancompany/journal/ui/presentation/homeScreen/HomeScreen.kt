@@ -19,9 +19,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.swancompany.journal.data.models.NoteModel
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.DismissDirection.EndToStart
 import androidx.compose.material.DismissDirection.StartToEnd
@@ -33,6 +35,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
@@ -46,6 +49,7 @@ import com.swancompany.journal.ui.theme.JournalTheme
 fun HomeScreen(
     onFabClicked: () -> Unit,
     navigateToUpdateNoteScreen: (noteId: Int) -> Unit,
+    navigateToAboutScreen:()-> Unit
 ) {
     val viewModel: HomeViewModel = viewModel()
     val notesModel = viewModel.notesModel
@@ -53,30 +57,36 @@ fun HomeScreen(
         viewModel.getAllNotes()
     }
     Scaffold(
-        topBar = { HomeTopBar() },
+        topBar = { HomeTopBar(navigateToAboutScreen) },
         floatingActionButton = {
             FloatingActionButton(onClick = { onFabClicked() }) {
                 Icon(Icons.Filled.Add,
                     contentDescription = "add")
             }
         },
+        backgroundColor = colorScheme.surface
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+        Surface(
+            color = colorScheme.background,
+            shape = RoundedCornerShape(32.dp,0.dp)
         ) {
-            if (notesModel.isNotEmpty()) {
-                items(notesModel) { noteModel ->
-                    NoteSwappable(noteModel, viewModel, navigateToUpdateNoteScreen)
-                }
-            } else {
-                item {
-                    ShowNoNotes()
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+                    .padding(1.dp,12.dp)
+            ) {
+                if (notesModel.isNotEmpty()) {
+                    items(notesModel) { noteModel ->
+                        NoteSwappable(noteModel, viewModel, navigateToUpdateNoteScreen)
+                    }
+                } else {
+                    item {
+                        ShowNoNotes()
+                    }
                 }
             }
         }
     }
 }
-
 
 @ExperimentalMaterialApi
 @Composable
@@ -131,8 +141,9 @@ fun NoteSwappable(
 
 @Composable
 fun ShowNoNotes() {
-    Column(modifier = Modifier.fillMaxSize()
-        .padding(0.dp,120.dp,0.dp,0.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(0.dp, 120.dp, 0.dp, 0.dp)) {
         Image(
             painter = painterResource(id = R.drawable.img),
             contentDescription = "empty",
@@ -153,24 +164,30 @@ fun NotesCard(
 ) {
     Card(
         modifier = Modifier
-            .heightIn(0.dp ,188.dp)
+            .heightIn(0.dp, 188.dp)
             .fillMaxWidth()
-            .padding(8.dp, 4.dp)
+            .padding(8.dp,5.dp,8.dp,5.dp)
             .clickable {
                 navigateToUpdateNoteScreen(noteModel.id)
                 Log.i("HomeScreen", "onCardClicked")
             },
+        border = BorderStroke(2.dp, colorScheme.surface),
+        shape = RoundedCornerShape(32.dp,0.dp,32.dp,0.dp),
         elevation = 4.dp,
         ) {
-            Column(modifier = Modifier.fillMaxWidth()
-                .padding(12.dp,4.dp)) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .background(colorScheme.secondaryContainer)
+                .padding(20.dp, 4.dp)) {
                 Text(
                     text = noteModel.title,
+                    color = colorScheme.onSecondaryContainer,
                     fontSize = 24.sp
                 )
                 Text(
                     text = noteModel.notes,
                     Modifier.alpha(.7f),
+                    color = colorScheme.onSecondaryContainer,
                     lineHeight = 17.sp
                 )
             }

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.swancompany.journal.ui.presentation.aboutScreen.AboutScreen
 import com.swancompany.journal.ui.presentation.addNoteScreen.AddNoteScreen
 import com.swancompany.journal.ui.presentation.homeScreen.HomeScreen
 import com.swancompany.journal.ui.presentation.updateNoteScreen.UpdateNoteScreen
@@ -24,7 +25,8 @@ fun JournalApp(
                 onFabClicked = { navController.navigate(JournalAppScreens.AddNotes.name) },
                 navigateToUpdateNoteScreen = { noteId ->
                     navController.navigate("${JournalAppScreens.UpdateNotes.name}/$noteId")
-                }
+                },
+                navigateToAboutScreen = {navController.navigate(JournalAppScreens.About.name)}
             )
         }
         composable(route = "${JournalAppScreens.UpdateNotes.name}/{noteId}",
@@ -38,6 +40,9 @@ fun JournalApp(
         }
         composable(JournalAppScreens.AddNotes.name) {
             AddNoteScreen(navigateBack = { navController.popBackStack() })
+        }
+        composable(JournalAppScreens.About.name){
+            AboutScreen (navigateBack = { navController.popBackStack() })
         }
     }
 }

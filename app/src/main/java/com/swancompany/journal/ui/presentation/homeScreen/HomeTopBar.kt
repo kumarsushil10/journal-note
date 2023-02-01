@@ -11,7 +11,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeTopBar() {
+fun HomeTopBar(
+    navigateToAboutScreen:()-> Unit
+) {
     CenterAlignedTopAppBar(
         title = {
             Text(stringResource(R.string.app_name))
@@ -26,7 +28,7 @@ fun HomeTopBar() {
             )
         },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {navigateToAboutScreen() }) {
                 Icon(painterResource(
                     id = R.drawable.about),
                     contentDescription = "about")

@@ -1,7 +1,5 @@
 package com.swancompany.journal.ui.presentation.addNoteScreen
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.material3.*
 import com.swancompany.journal.R
 import androidx.compose.runtime.Composable
