@@ -39,6 +39,7 @@ import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -51,7 +52,7 @@ import com.swancompany.journal.ui.theme.JournalTheme
 fun HomeScreen(
     onFabClicked: () -> Unit,
     navigateToUpdateNoteScreen: (noteId: Int) -> Unit,
-    navigateToAboutScreen:()-> Unit
+    navigateToAboutScreen: () -> Unit,
 ) {
     val viewModel: HomeViewModel = viewModel()
     val notesModel = viewModel.notesModel
@@ -69,12 +70,13 @@ fun HomeScreen(
         backgroundColor = colorScheme.surface
     ) {
         Surface(
-            color = colorScheme.background,
-            shape = RoundedCornerShape(32.dp,0.dp)
+            color = colorResource(id = R.color.colorBackground),
+            shape = RoundedCornerShape(32.dp, 0.dp)
         ) {
             LazyColumn(
-                modifier = Modifier.fillMaxSize()
-                    .padding(1.dp,12.dp)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(12.dp, 6.dp, 12.dp, 0.dp)
             ) {
                 if (notesModel.isNotEmpty()) {
                     items(notesModel) { noteModel ->
@@ -95,8 +97,8 @@ fun HomeScreen(
 fun NoteSwappable(
     noteModel: NoteModel,
     viewModel: HomeViewModel,
-    navigateToUpdateNoteScreen: (noteId: Int) -> Unit
-    ) {
+    navigateToUpdateNoteScreen: (noteId: Int) -> Unit,
+) {
     val dismissState = rememberDismissState(
         confirmStateChange = {
             if (it == DismissedToEnd)
@@ -162,39 +164,39 @@ fun ShowNoNotes() {
 @Composable
 fun NotesCard(
     noteModel: NoteModel,
-    navigateToUpdateNoteScreen: (noteId: Int) -> Unit
+    navigateToUpdateNoteScreen: (noteId: Int) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .heightIn(0.dp, 188.dp)
             .fillMaxWidth()
-            .padding(8.dp,5.dp,8.dp,5.dp)
+            .padding(0.dp, 5.dp, 0.dp, 5.dp)
             .clickable {
                 navigateToUpdateNoteScreen(noteModel.id)
                 Log.i("HomeScreen", "onCardClicked")
             },
-        border = BorderStroke(2.dp, colorScheme.surface),
-        shape = RoundedCornerShape(32.dp,0.dp,32.dp,0.dp),
+        border = BorderStroke(1.dp, colorResource(id = R.color.colorCardBorder)),
+        shape = RoundedCornerShape(32.dp, 0.dp, 32.dp, 0.dp),
         elevation = 4.dp,
-        ) {
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .background(colorScheme.secondaryContainer)
-                .padding(20.dp, 4.dp)) {
-                Text(
-                    text = noteModel.title,
-                    color = colorScheme.onSecondaryContainer,
-                    fontSize = 24.sp,
-                    fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
+    ) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(colorResource(id = R.color.colorCardBg))
+            .padding(20.dp, 4.dp)) {
+            Text(
+                text = noteModel.title,
+                color = colorScheme.onSurface,
+                fontSize = 24.sp,
+                fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
 
-                    )
-                Text(
-                    text = noteModel.notes,
-                    Modifier.alpha(0.9f),
-                    fontFamily = FontFamily(Font(R.font.assistant_regular)),
-                    color = colorScheme.onSecondaryContainer,
-                    lineHeight = 17.sp
                 )
-            }
+            Text(
+                text = noteModel.notes,
+                Modifier.alpha(0.9f),
+                fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                color = colorScheme.onSurface,
+                lineHeight = 17.sp
+            )
+        }
     }
 }

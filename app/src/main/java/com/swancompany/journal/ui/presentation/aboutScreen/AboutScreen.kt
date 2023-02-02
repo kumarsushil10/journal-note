@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -44,30 +45,21 @@ fun AboutScreen(
         backgroundColor = colorScheme.surface
     ) {
         Surface(
-            color = colorScheme.background,
+            color = colorResource(id = R.color.colorBackground),
             shape = RoundedCornerShape(32.dp, 32.dp)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(20.dp, 10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
             ) {
                 Spacer(modifier = Modifier.height(100.dp))
-                Card(
-                    modifier = Modifier
-                        .height(160.dp)
-                        .width(160.dp),
-                    shape = CircleShape,
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "logo",
-                        modifier = Modifier.background(colorScheme.secondaryContainer)
-                    )
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-
+                Image(
+                    painter = painterResource(id = R.drawable.note_logo),
+                    contentDescription = "logo",
+                )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     color = colorScheme.onSurface,
@@ -79,7 +71,8 @@ fun AboutScreen(
                 Text(
                     text = "Sushil Kumar",
                     color = colorScheme.onSurface,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .alpha(0.8f)
                         .padding(start = 180.dp),
                     fontSize = 20.sp,
@@ -148,6 +141,7 @@ fun AboutScreen(
                         )
                     }
                 }
+                Spacer(modifier = Modifier.height(20.dp))
             }
         }
     }

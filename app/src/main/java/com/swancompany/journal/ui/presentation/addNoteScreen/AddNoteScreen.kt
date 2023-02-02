@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -39,7 +40,7 @@ fun AddNoteScreen(
         backgroundColor = colorScheme.surface
     ) {
         Surface(
-            color = colorScheme.background,
+            color = colorResource(id = R.color.colorBackground),
             shape = RoundedCornerShape(32.dp, 32.dp)
         ) {
             Column(modifier = Modifier.fillMaxSize()
