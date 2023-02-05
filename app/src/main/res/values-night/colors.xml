@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorBackground">#50503B</color>
-    <color name="colorCardBg">#FF586400</color>
-    <color name="colorCardBorder">#E6910033</color>
+    <color name="colorBackground">#1A160F</color>
 
 </resources>

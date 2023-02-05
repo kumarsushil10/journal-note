@@ -58,7 +58,7 @@ fun UpdateNoteScreen(
                     placeholder = { Text(text = "Title",color = colorScheme.onSurface) },
                     textStyle = TextStyle(
                         color = colorScheme.onSurface,
-                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans_regular)),
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -83,7 +83,7 @@ fun UpdateNoteScreen(
                     onValueChange = { note -> viewModel.updateNote(note) },
                     placeholder = { Text(text = "Note",color = colorScheme.onSurface) },
                     textStyle = TextStyle(color = colorScheme.onSurface,
-                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans_regular)),
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
