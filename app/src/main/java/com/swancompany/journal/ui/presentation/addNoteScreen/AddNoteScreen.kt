@@ -50,7 +50,7 @@ fun AddNoteScreen(
                     onValueChange = { title = it },
                     placeholder = { Text("Title", color = colorScheme.onSurface) },
                     textStyle = TextStyle(color = colorScheme.onSurface,
-                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans_regular)),
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
@@ -74,7 +74,7 @@ fun AddNoteScreen(
                     onValueChange = { notes = it },
                     placeholder = { Text("Notes", color = colorScheme.onSurface) },
                     textStyle = TextStyle(color = colorScheme.onSurface,
-                        fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans_regular)),
                     ),
                     modifier = Modifier
                         .fillMaxWidth()

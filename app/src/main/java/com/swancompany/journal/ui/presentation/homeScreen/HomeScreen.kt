@@ -62,7 +62,11 @@ fun HomeScreen(
     Scaffold(
         topBar = { HomeTopBar(navigateToAboutScreen) },
         floatingActionButton = {
-            FloatingActionButton(onClick = { onFabClicked() }) {
+            FloatingActionButton(
+                modifier = Modifier.padding(0.dp, 0.dp, 20.dp, 32.dp),
+                onClick = { onFabClicked() },
+                containerColor = colorScheme.secondaryContainer
+            ) {
                 Icon(Icons.Filled.Add,
                     contentDescription = "add")
             }
@@ -70,13 +74,13 @@ fun HomeScreen(
         backgroundColor = colorScheme.surface
     ) {
         Surface(
-            color = colorResource(id = R.color.colorBackground),
-            shape = RoundedCornerShape(32.dp, 0.dp)
+            shape = RoundedCornerShape(32.dp, 32.dp),
+            color = colorResource(id = R.color.colorBackground)
         ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(12.dp, 6.dp, 12.dp, 0.dp)
+                    .padding(0.dp, 20.dp, 0.dp, 0.dp)
             ) {
                 if (notesModel.isNotEmpty()) {
                     items(notesModel) { noteModel ->
@@ -131,7 +135,7 @@ fun NoteSwappable(
         ) {
             Icon(
                 Icons.Default.Delete,
-                contentDescription = "",
+                contentDescription = "delete",
                 modifier = Modifier.scale(scale)
             )
         }
@@ -170,31 +174,27 @@ fun NotesCard(
         modifier = Modifier
             .heightIn(0.dp, 188.dp)
             .fillMaxWidth()
-            .padding(0.dp, 5.dp, 0.dp, 5.dp)
+            .padding(20.dp, 5.dp)
             .clickable {
                 navigateToUpdateNoteScreen(noteModel.id)
                 Log.i("HomeScreen", "onCardClicked")
             },
-        border = BorderStroke(1.dp, colorResource(id = R.color.colorCardBorder)),
-        shape = RoundedCornerShape(32.dp, 0.dp, 32.dp, 0.dp),
-        elevation = 4.dp,
-    ) {
+        backgroundColor = colorScheme.surface,
+        shape = RoundedCornerShape(24.dp)
+        ) {
         Column(modifier = Modifier
             .fillMaxWidth()
-            .background(colorResource(id = R.color.colorCardBg))
-            .padding(20.dp, 4.dp)) {
+            .padding(24.dp, 6.dp)
+        ) {
             Text(
                 text = noteModel.title,
-                color = colorScheme.onSurface,
                 fontSize = 24.sp,
                 fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
 
                 )
             Text(
                 text = noteModel.notes,
-                Modifier.alpha(0.9f),
-                fontFamily = FontFamily(Font(R.font.assistant_regular)),
-                color = colorScheme.onSurface,
+                fontFamily = FontFamily(Font(R.font.plus_jakarta_sans_regular)),
                 lineHeight = 17.sp
             )
         }

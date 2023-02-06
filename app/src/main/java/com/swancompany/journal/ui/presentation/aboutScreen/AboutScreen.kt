@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
@@ -55,11 +56,11 @@ fun AboutScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
-                Spacer(modifier = Modifier.height(100.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.note_logo),
+                    painter = painterResource(id = R.drawable.note_logo_3),
                     contentDescription = "logo",
                 )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     color = colorScheme.onSurface,
@@ -68,18 +69,17 @@ fun AboutScreen(
                     fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
                     fontSize = 40.sp
                 )
-                Text(
-                    text = "Sushil Kumar",
-                    color = colorScheme.onSurface,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .alpha(0.8f)
-                        .padding(start = 180.dp),
-                    fontSize = 20.sp,
-                    fontFamily = FontFamily(Font(R.font.dancing_script_regular))
-                )
+                Spacer(modifier = Modifier.height(40.dp))
 
-                Spacer(modifier = Modifier.height(160.dp))
+                Text(
+                    text = stringResource(id = R.string.about_me),
+                    textAlign = TextAlign.Center,
+                    color = colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(10.dp,0.dp),
+                    fontFamily = FontFamily(Font(R.font.playfair_display_regular))
+                )
+                Spacer(modifier = Modifier.height(100.dp))
                 Button(
                     onClick = { startActivity(context, intentGithub, null)},
                     modifier = Modifier
@@ -88,58 +88,35 @@ fun AboutScreen(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black,
                         contentColor = Color.White),
-                    shape = RoundedCornerShape(50.dp, 50.dp, 0.dp,0.dp),
-                    border = BorderStroke(1.dp, Color.White),
+                    shape = RoundedCornerShape(20.dp),
 
                     ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth()) {
-                        Image(
-                            painter = painterResource(id = R.drawable.github),
-                            contentDescription = "git",
-                            modifier = Modifier
-                                .height(40.dp)
-                                .width(40.dp)
-                        )
                         Text(
                             text = "GitHub",
                             fontSize = 24.sp,
-                            fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                            fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center
                         )
-                    }
                 }
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Button(
                     onClick = { startActivity(context, intentLinkedIn, null) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Blue,
+                        containerColor = colorResource(id = R.color.linked_in_btn),
                         contentColor = Color.White),
-                    shape = RoundedCornerShape(0.dp, 0.dp, 50.dp,50.dp),
-                    border = BorderStroke(1.dp, Color.White),
+                    shape = RoundedCornerShape(20.dp),
                     ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.linkedin),
-                            contentDescription = "git",
-                            modifier = Modifier
-                                .height(40.dp)
-                                .width(40.dp)
-                        )
                         Text(
                             text = "LinkedIn",
                             fontSize = 24.sp,
-                            fontFamily = FontFamily(Font(R.font.assistant_regular)),
+                            fontFamily = FontFamily(Font(R.font.playfair_display_regular)),
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center
                         )
-                    }
                 }
                 Spacer(modifier = Modifier.height(20.dp))
             }
