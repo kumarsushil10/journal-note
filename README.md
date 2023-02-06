@@ -5,8 +5,7 @@
 
 
 # :camera: Screenshots :camera:
-![screen1](https://user-images.githubusercontent.com/108513377/216398046-aa731378-1038-4bc6-980a-c6b99c72a366.png)
-![screen2](https://user-images.githubusercontent.com/108513377/216398074-e623b236-1e8a-4e75-9d74-7ab960b85d6e.png)
+![github_post](https://user-images.githubusercontent.com/108513377/216899455-54ff9583-46b2-4d33-8381-87c6c0cc0177.png)
 
 
 <br>
